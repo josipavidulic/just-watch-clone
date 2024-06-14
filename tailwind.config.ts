@@ -8,10 +8,21 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: "var(--ion-color-primary)",
+        secondary: "var(--ion-color-secondary)",
+        tertiary: "var(--ion-color-tertiary)",
+        light: "var(--ion-color-light)",
+      },
+      fontFamily: {
+        lato: ["Lato", "Lato-fallback", "Arial", "sans-serif"],
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "ion-background": "var(--ion-background-color)",
+        "custom-gradient": "linear-gradient(180deg, transparent 0%, #000 100%)",
       },
     },
   },
