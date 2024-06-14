@@ -23,6 +23,8 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "ion-background": "var(--ion-background-color)",
         "custom-gradient": "linear-gradient(180deg, transparent 0%, #000 100%)",
+        "card-gradient":
+          "linear-gradient(180deg, #11181f, rgba(17, 24, 31, 0))",
       },
     },
   },
