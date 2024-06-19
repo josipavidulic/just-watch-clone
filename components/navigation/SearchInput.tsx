@@ -1,9 +1,11 @@
+import { LinkButton } from "@/types/types";
 import { Search } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 
 interface SearchInputProps {
   isExpanded: boolean;
   setIsExpanded: (isExpanded: boolean) => void;
+  isHomePage?: boolean;
 }
 
 const trendSearch: LinkButton[] = [
@@ -19,7 +21,11 @@ const trendSearch: LinkButton[] = [
   { id: 9, name: "Digitalni ugljik" },
 ];
 
-const SearchInput = ({ isExpanded, setIsExpanded }: SearchInputProps) => {
+const SearchInput = ({
+  isExpanded,
+  setIsExpanded,
+  isHomePage,
+}: SearchInputProps) => {
   const [value, setValue] = useState("");
   const searchContainerRef = useRef<HTMLDivElement>(null);
 
@@ -52,9 +58,9 @@ const SearchInput = ({ isExpanded, setIsExpanded }: SearchInputProps) => {
     <div
       onClick={() => setIsExpanded(!isExpanded)}
       ref={searchContainerRef}
-      className={`relative flex flex-col w-[474px] justify-start rounded bg-[var(--ion-color-tertiary-shade)] m-2 sm:mr-4 text-md transition-width duration-[600ms] delay-[100ms] ${
+      className={`relative flex flex-col justify-start rounded bg-[var(--ion-color-tertiary-shade)] text-md transition-width duration-[600ms] delay-[100ms] ${
         isExpanded && "flex-grow rounded-b-none"
-      }`}
+      } ${isHomePage ? "w-[474px]" : "flex-grow"}`}
     >
       <div className="h-[38px] py-1 flex items-center justify-center">
         <Search className="w-5 h-5 m-4" />
@@ -63,7 +69,7 @@ const SearchInput = ({ isExpanded, setIsExpanded }: SearchInputProps) => {
           onChange={(e) => setValue(e.target.value)}
           type="text"
           placeholder="Pretražite filmove ili serije"
-          className="border-none bg-transparent m-0 outline-none w-full placeholder:text-[#8c8c8c] text-[#ffff] pr-4"
+          className="border-none bg-transparent m-0 outline-none w-full placeholder:text-[#8c8c8c] text-[#ffff]"
         />
       </div>
       <div

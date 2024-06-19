@@ -3,7 +3,6 @@ import React from "react";
 
 interface StaticCardProps {
   imageUrl: string;
-
   imageDescription: string;
   title: string;
   description: string;
