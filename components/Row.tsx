@@ -1,11 +1,17 @@
 "use client";
+import { FavoriteContext, useFavorites } from "@/context/FavoriteContext";
 import { kebabCase } from "@/lib/kebabCase";
+import {
+  addFavoriteId,
+  getFavoriteIds,
+  removeFavoriteId,
+} from "@/lib/localStorageUtils";
 import { cn } from "@/lib/utils";
 import { ResponseData } from "@/types/types";
 import { Bookmark, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 
 interface RowProps {
   showRankingNumber?: boolean;
@@ -23,6 +29,7 @@ const Row = ({
   const sliderRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  const { favoriteIds, addFavoriteId, removeFavoriteId } = useFavorites();
 
   useEffect(() => {
     const slider = sliderRef.current;
@@ -56,6 +63,15 @@ const Row = ({
     const slider = sliderRef.current;
     if (slider) {
       slider.scrollBy({ left: slider.clientWidth, behavior: "smooth" });
+    }
+  };
+
+  const handleFavoriteId = (id: number, e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!favoriteIds.includes(id)) {
+      addFavoriteId(id);
+    } else {
+      removeFavoriteId(id);
     }
   };
 
@@ -97,7 +113,13 @@ const Row = ({
                 className="relative flex bg-[#0a151f] overflow-hidden w-[190px] outline-none text-[#78a6b8]"
               >
                 {hasFavoriteIcon && (
-                  <Bookmark className="absolute top-[-6px] m-2 mt-0 w-10 h-10 fill-[#fff] text-[#fff] opacity-40 hover:opacity-80" />
+                  <Bookmark
+                    onClick={(e) => handleFavoriteId(item.id, e)}
+                    className={cn(
+                      `absolute top-[-6px] m-2 mt-0 w-10 h-10 fill-[#fff] text-[#fff] opacity-40 hover:opacity-80`,
+                      favoriteIds.includes(item.id) && "opacity-100"
+                    )}
+                  />
                 )}
                 <Image
                   src={`https://image.tmdb.org/t/p/original/${item?.poster_path}`}
