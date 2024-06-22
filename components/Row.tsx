@@ -1,23 +1,16 @@
 "use client";
-import { FavoriteContext, useFavorites } from "@/context/FavoriteContext";
-import { kebabCase } from "@/lib/kebabCase";
-import {
-  addFavoriteId,
-  getFavoriteIds,
-  removeFavoriteId,
-} from "@/lib/localStorageUtils";
 import { cn } from "@/lib/utils";
 import { ResponseData } from "@/types/types";
-import { Bookmark, ChevronLeft, ChevronRight } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import React, { useRef, useState, useEffect, useContext } from "react";
+import Card from "./Card";
 
 interface RowProps {
   showRankingNumber?: boolean;
   results: ResponseData[];
   rowId: string;
   hasFavoriteIcon?: boolean;
+  className?: string;
 }
 
 const Row = ({
@@ -25,11 +18,11 @@ const Row = ({
   results,
   rowId,
   hasFavoriteIcon,
+  className,
 }: RowProps) => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
-  const { favoriteIds, addFavoriteId, removeFavoriteId } = useFavorites();
 
   useEffect(() => {
     const slider = sliderRef.current;
@@ -66,17 +59,8 @@ const Row = ({
     }
   };
 
-  const handleFavoriteId = (id: number, e: React.MouseEvent) => {
-    e.preventDefault();
-    if (!favoriteIds.includes(id)) {
-      addFavoriteId(id);
-    } else {
-      removeFavoriteId(id);
-    }
-  };
-
   return (
-    <div className="relative w-full  flex items-center overflow-hidden group">
+    <div className="relative w-full flex items-center overflow-hidden group">
       {canScrollLeft && (
         <button
           onClick={slideLeft}
@@ -94,44 +78,23 @@ const Row = ({
           hasFavoriteIcon && "gap-3"
         )}
       >
-        {results.map((item, index) => {
-          const title = (item.original_title as string) ?? item.original_name;
-          return (
-            <div
-              key={item.id}
-              className="flex items-end h-full  text-[130px] sm:text-[180px] font-black text-[#222c38]"
-            >
-              {showRankingNumber && (
-                <div className="overflow-hidden leading-none tracking-[-20px]">
-                  {index + 1}
-                </div>
-              )}
-              <Link
-                href={`/hr/${
-                  item.media_type === "movie" ? "film" : "serija"
-                }/${kebabCase(title)}/${item.id}`}
-                className="relative flex bg-[#0a151f] overflow-hidden w-[190px] outline-none text-[#78a6b8]"
-              >
-                {hasFavoriteIcon && (
-                  <Bookmark
-                    onClick={(e) => handleFavoriteId(item.id, e)}
-                    className={cn(
-                      `absolute top-[-6px] m-2 mt-0 w-10 h-10 fill-[#fff] text-[#fff] opacity-40 hover:opacity-80`,
-                      favoriteIds.includes(item.id) && "opacity-100"
-                    )}
-                  />
-                )}
-                <Image
-                  src={`https://image.tmdb.org/t/p/original/${item?.poster_path}`}
-                  alt={(item.original_title as string) ?? item.name}
-                  width={190}
-                  height={270}
-                  className="inline-block w-full h-[270px] rounded-md"
-                />
-              </Link>
-            </div>
-          );
-        })}
+        {results.map((item, index) => (
+          <div
+            key={item.id}
+            className="flex items-end h-full text-[130px] sm:text-[180px] font-black text-[#222c38]"
+          >
+            {showRankingNumber && (
+              <div className="overflow-hidden leading-none tracking-[-20px]">
+                {index + 1}
+              </div>
+            )}
+            <Card
+              card={item}
+              hasFavoriteIcon={hasFavoriteIcon}
+              className={className}
+            />
+          </div>
+        ))}
       </div>
       {canScrollRight && (
         <button

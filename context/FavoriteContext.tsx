@@ -1,15 +1,16 @@
 "use client";
 import {
-  addFavoriteId,
-  getFavoriteIds,
-  removeFavoriteId,
+  addFavoriteMovie,
+  removeFavoriteMovie,
+  getFavoriteMovies,
 } from "@/lib/localStorageUtils";
+import { ResponseData } from "@/types/types";
 import { createContext, useContext, useEffect, useState } from "react";
 
 interface FavoriteContextProps {
-  favoriteIds: number[];
-  addFavoriteId: (id: number) => void;
-  removeFavoriteId: (id: number) => void;
+  favoriteMovies: ResponseData[];
+  addFavoriteMovie: (movie: ResponseData) => void;
+  removeFavoriteMovie: (movie: ResponseData) => void;
 }
 
 export const FavoriteContext = createContext<FavoriteContextProps | undefined>(
@@ -21,30 +22,33 @@ export const FavoritesProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
+  const [favoriteMovies, setFavoriteMovies] = useState<ResponseData[]>([]);
 
   useEffect(() => {
-    const storedFavoriteIds = getFavoriteIds();
-    setFavoriteIds(storedFavoriteIds);
+    const storedFavoriteMovies = getFavoriteMovies();
+    setFavoriteMovies(storedFavoriteMovies);
   }, []);
-  const handleAddFavoriteIds = (id: number) => {
-    if (!favoriteIds.includes(id)) {
-      addFavoriteId(id);
-      setFavoriteIds([...favoriteIds, id]);
+
+  const handleAddFavoriteMovie = (movie: ResponseData) => {
+    if (!favoriteMovies.some((favMovie) => favMovie.id === movie.id)) {
+      addFavoriteMovie(movie);
+      setFavoriteMovies((prevMovies) => [...prevMovies, movie]);
     }
   };
 
-  const handleRemoveFavoriteId = (id: number) => {
-    if (favoriteIds.includes(id)) {
-      removeFavoriteId(id);
-      setFavoriteIds(favoriteIds.filter((favId) => favId !== id));
+  const handleRemoveFavoriteMovie = (movie: ResponseData) => {
+    if (favoriteMovies.some((favMovie) => favMovie.id === movie.id)) {
+      removeFavoriteMovie(movie);
+      setFavoriteMovies((prevMovies) =>
+        prevMovies.filter((favMovie) => favMovie.id !== movie.id)
+      );
     }
   };
 
   const contextValue: FavoriteContextProps = {
-    favoriteIds,
-    addFavoriteId: handleAddFavoriteIds,
-    removeFavoriteId: handleRemoveFavoriteId,
+    favoriteMovies,
+    addFavoriteMovie: handleAddFavoriteMovie,
+    removeFavoriteMovie: handleRemoveFavoriteMovie,
   };
 
   return (

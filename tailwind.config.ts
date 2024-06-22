@@ -24,9 +24,10 @@ const config: Config = {
         "ion-background": "var(--ion-background-color)",
         "custom-gradient":
           "linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.1), #000)",
+        "blue-gradient":
+          "linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.1), #060d17)",
         "card-gradient":
           "linear-gradient(180deg, #11181f, rgba(17, 24, 31, 0))",
-        "mask-image": "linear-gradient(90deg, #060d17 90%, transparent)",
       },
     },
   },

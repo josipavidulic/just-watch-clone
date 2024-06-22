@@ -6,6 +6,7 @@ import { getData } from "./actions";
 import { request } from "@/lib/requests";
 import HomePageListContainer from "@/components/home-page/HomePageListContainer";
 import Footer from "@/components/home-page/HomePageFooter";
+import { TMDbResponse } from "@/types/types";
 
 const staticCards = [
   {
@@ -95,10 +96,10 @@ const listContainers = [
 ];
 
 export default async function Home() {
-  const slides = await getData(request.trendingAll);
+  const data = await getData<TMDbResponse>(request.trendingAll);
 
   return (
-    <main className="relative w-full h-full flex flex-col gap-8 justify-center items-center z-0 bg-black font-lato mb-12">
+    <main className="relative w-full h-full flex flex-col gap-8 justify-center items-center z-0 bg-black font-lato pb-12">
       <HeroSection />
       <span className="sticky top-0 w-full h-[108px] lg:h-[86px] bg-black z-50"></span>
       <div className="flex flex-col lg:flex-row justify-between items-center gap-10 w-auto lg:w-[80%] max-sm:px-6">
@@ -124,7 +125,7 @@ export default async function Home() {
           key={container.rowId}
         />
       ))}
-      <GlobalLargeSpotlight slides={slides.slice(10)} />
+      <GlobalLargeSpotlight slides={data.results.slice(10)} />
       {listContainers.slice(2).map((container) => (
         <HomePageListContainer
           title={container.title}

@@ -1,9 +1,8 @@
 "use client";
-import { kebabCase } from "@/lib/kebabCase";
+import { formatVoteCount } from "@/lib/formatVoteCount";
 import { ResponseData } from "@/types/types";
 import { ChevronLeft, ChevronRight, Info } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 interface GlobalLargeSpotlightProps {
@@ -61,13 +60,15 @@ const GlobalLargeSpotlight = ({ slides }: GlobalLargeSpotlightProps) => {
                   </h2>
                   <div className="flex items-center gap-2">
                     <Image
-                      src="/imdb-logo.jpeg"
+                      src="/imdb-logo.jpg"
                       alt="imdb-logo"
                       width={16}
                       height={16}
+                      className="rounded-sm"
                     />
                     <p className="text-lg">
-                      {slide.vote_average} ({slide.vote_count})
+                      {slide.vote_average.toFixed(1)} (
+                      {formatVoteCount(slide.vote_count)})
                     </p>
                   </div>
                   <p className="text-[#8a8d98] text-base font-normal">
@@ -76,15 +77,10 @@ const GlobalLargeSpotlight = ({ slides }: GlobalLargeSpotlightProps) => {
                       : slide.overview}
                   </p>
 
-                  <Link
-                    href={`/hr/${
-                      slide.media_type === "movie" ? "film" : "serija"
-                    }/${kebabCase(title)}`}
-                    className="px-5 py-2.5 w-fit bg-[#fbc500] hover:bg-[#ddad00] text-black rounded-sm flex items-center gap-1 justify-center"
-                  >
+                  <div className="px-5 py-2.5 w-fit bg-[#fbc500] hover:bg-[#ddad00] text-black rounded-sm flex items-center gap-1 justify-center">
                     <Info className="w-5 h-5 fill-black text-[#fbc500]" />
                     More info
-                  </Link>
+                  </div>
                 </div>
               </div>
             </div>

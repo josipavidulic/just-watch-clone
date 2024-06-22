@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import React from "react";
 import Row from "../Row";
 import uuid from "react-uuid";
+import { TMDbResponse } from "@/types/types";
 
 interface HomePageListContainerProps {
   title?: string;
@@ -21,7 +22,7 @@ const HomePageListContainer = async ({
   seeMoreDescriptionButton,
   className,
 }: HomePageListContainerProps) => {
-  const results = await getData(requestType);
+  const data = await getData<TMDbResponse>(requestType);
 
   return (
     <div
@@ -48,9 +49,10 @@ const HomePageListContainer = async ({
         </div>
       )}
       <Row
-        results={showRankingNumber ? results.slice(0, 10) : results}
+        results={showRankingNumber ? data.results.slice(0, 10) : data.results}
         showRankingNumber={showRankingNumber}
         rowId={uuid()}
+        className="w-[190px]"
       />
     </div>
   );

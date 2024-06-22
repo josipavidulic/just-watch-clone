@@ -1,36 +1,40 @@
-const STORAGE_KEY = "favoriteIds";
+import { ResponseData } from "@/types/types";
 
-export const getFavoriteIds = (): number[] => {
+const STORAGE_KEY = "favoriteMovies";
+
+export const getFavoriteMovies = (): ResponseData[] => {
   try {
-    const favoriteIdsString = localStorage.getItem(STORAGE_KEY);
-    if (favoriteIdsString) {
-      return JSON.parse(favoriteIdsString);
+    const favoriteMoviesString = localStorage.getItem(STORAGE_KEY);
+    if (favoriteMoviesString) {
+      return JSON.parse(favoriteMoviesString);
     }
     return [];
   } catch (error) {
-    console.error("Error retrieving favorite IDs from localStorage:", error);
+    console.error("Error retrieving favorite Movies from localStorage:", error);
     return [];
   }
 };
 
-export const addFavoriteId = (id: number) => {
+export const addFavoriteMovie = (movie: ResponseData) => {
   try {
-    const favoriteIds = getFavoriteIds();
-    if (!favoriteIds.includes(id)) {
-      favoriteIds.push(id);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(favoriteIds));
+    const favoriteMovies = getFavoriteMovies();
+    if (!favoriteMovies.some((favMovie) => favMovie.id === movie.id)) {
+      favoriteMovies.push(movie);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(favoriteMovies));
     }
   } catch (error) {
-    console.error("Error adding favorite ID to localStorage:", error);
+    console.error("Error adding favorite movies to localStorage:", error);
   }
 };
 
-export const removeFavoriteId = (id: number) => {
+export const removeFavoriteMovie = (movie: ResponseData) => {
   try {
-    const favoriteIds = getFavoriteIds();
-    const updatedFavoriteIds = favoriteIds.filter((favId) => favId !== id);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedFavoriteIds));
+    const favoriteMovies = getFavoriteMovies();
+    const updatedFavoriteMovies = favoriteMovies.filter(
+      (favMovie) => favMovie.id !== movie.id
+    );
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedFavoriteMovies));
   } catch (error) {
-    console.error("Error removing favorite ID from localStorage:", error);
+    console.error("Error removing favorite movie from localStorage:", error);
   }
 };
