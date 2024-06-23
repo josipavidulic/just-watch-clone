@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 
+input[type="range"]::-webkit-slider-thumb {
+  pointer-events: auto;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  @apply bg-[#4c5a67];}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

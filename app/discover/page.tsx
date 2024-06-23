@@ -4,26 +4,27 @@ import React from "react";
 const discoverList = [
   {
     id: 0,
-    title: "Top 3",
-    requestType: request.topRatedMovies,
-    lastElemement: 3,
-  },
-  {
-    id: 1,
-    title: "Najnoviji filmovi",
+    title: "Newest movies",
     requestType: request.latestMovies,
     lastElemement: -1,
   },
   {
+    id: 1,
+    title: "Top 3 highest rated movies",
+    requestType: request.topRatedMovies,
+    lastElemement: 3,
+  },
+
+  {
     id: 2,
-    title: "Top 10 u 🇭🇷 danas",
+    title: "Top 10 in 🇭🇷 today",
     requestType: request.popularMovies,
     showRankingNumber: true,
     lastElemement: 10,
   },
   {
     id: 3,
-    title: "Akcijski filmovi",
+    title: "Action",
     requestType: request.actionMovies,
     lastElemement: -1,
   },
@@ -35,7 +36,7 @@ const discoverList = [
   },
   {
     id: 5,
-    title: "Glazba u filmu",
+    title: "Music in movie",
     requestType: request.musicMovies,
     lastElemement: -1,
   },
