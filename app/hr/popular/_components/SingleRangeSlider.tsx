@@ -75,8 +75,11 @@ const SingleRangeSlider: React.FC<SingleRangeSliderProps> = ({
   return (
     <>
       <div className="flex justify-between">
-        <h2 className="text-xl text-[#d5d5d5]">Rating</h2>
-        <button className="flex items-center gap-1" onClick={handleResetButton}>
+        <h2 className="text-md md:text-xl text-[#d5d5d5]">Rating</h2>
+        <button
+          className="flex items-center gap-1 py-1 px-2 sm:py-1.5 sm:px-2.5 rounded-md hover:bg-[#5e6b76] hover:bg-opacity-10"
+          onClick={handleResetButton}
+        >
           <X className="text-[#4c5a67] w-4 h-4" />
           <h2 className="text-sm text-[#4c5a67] uppercase font-bold">reset</h2>
         </button>
@@ -105,6 +108,8 @@ const SingleRangeSlider: React.FC<SingleRangeSliderProps> = ({
               onChange={handleChange}
               onMouseDown={handleMouseDown}
               onMouseUp={handleMouseUp}
+              onTouchStart={handleMouseDown}
+              onTouchEnd={handleMouseUp}
               type="range"
               min={min}
               step={step}

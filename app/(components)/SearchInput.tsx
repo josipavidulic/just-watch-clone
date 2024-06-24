@@ -58,9 +58,9 @@ const SearchInput = ({
     <div
       onClick={() => setIsExpanded(!isExpanded)}
       ref={searchContainerRef}
-      className={`relative flex flex-col justify-start rounded bg-[var(--ion-color-tertiary-shade)] text-md transition-width duration-[600ms] delay-[100ms] ${
+      className={`relative flex w-full flex-col justify-start rounded bg-[var(--ion-color-tertiary-shade)] text-md transition-width duration-[600ms] delay-[100ms] ${
         isExpanded && "flex-grow rounded-b-none"
-      } ${isHomePage ? "w-[474px]" : "flex-grow"}`}
+      }`}
     >
       <div className="h-[38px] py-1 flex items-center justify-center">
         <Search className="w-5 h-5 m-4" />

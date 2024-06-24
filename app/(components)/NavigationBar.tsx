@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import SearchInput from "./SearchInput";
 import { LinkButton } from "@/types/types";
-import { Bookmark, Menu, UserRoundCog } from "lucide-react";
+import { Menu, UserRoundCog } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
@@ -31,7 +31,7 @@ const NavigationBar = () => {
       <div className="flex flex-col lg:flex-row items-center justify-between font-lato text-sm text-[#8c8c8c] ">
         <div className="max-lg:w-full flex items-center justify-between lg:px-3">
           <Menu className="block lg:hidden" />
-          <Link href="/" className="max-lg:p-5 lg:pr-6 flex-shrink-0">
+          <Link href="/" className="max-lg:p-5 lg:pr-6 flex-shrink-0 lg:mr-80">
             <Image
               src="/justwatch-logo.svg"
               alt="logo"
@@ -44,17 +44,11 @@ const NavigationBar = () => {
               }`}
             />
           </Link>
-          <div className="flex gap-3 items-center">
-            {!isHomePage && (
-              <Bookmark className="fill-[#8c8c8c] block lg:hidden" />
-            )}
-            <UserRoundCog className="block lg:hidden" />
-          </div>
+
+          <UserRoundCog className="block lg:hidden" />
         </div>
         <div
-          className={`flex items-center overflow-visible gap-4 lg:px-3 ${
-            !isHomePage && "w-full"
-          }`}
+          className={`flex w-full items-center overflow-visible gap-4 lg:px-3 `}
         >
           <div className={"flex gap-4"}>
             {menuOptions.map((item) => (

@@ -61,7 +61,7 @@ const CastList = ({ castList }: CastProps) => {
       <div
         id={"slider"}
         ref={sliderRef}
-        className="flex-1 overflow-y-auto scrollbar-hide grid grid-cols-2 sm:grid-cols-4 gap-4"
+        className="flex-1 overflow-y-auto scrollbar-hide grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8 gap-4"
       >
         {castList.map((actor) => (
           <div

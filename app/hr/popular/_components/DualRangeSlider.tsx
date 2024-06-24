@@ -16,8 +16,6 @@ interface DualRangeSliderProps {
 
 const DualRangeSlider = ({ min, max, step }: DualRangeSliderProps) => {
   const progressRef = useRef<HTMLDivElement>(null);
-  const tooltipMinRef = useRef<HTMLDivElement>(null);
-  const tooltipMaxRef = useRef<HTMLDivElement>(null);
   const { filters, setFilters } = useFilter();
   const [value, setValue] = useState<{ min: number; max: number }>({
     min: filters.releaseYearFrom,
@@ -84,26 +82,24 @@ const DualRangeSlider = ({ min, max, step }: DualRangeSliderProps) => {
       progressBar.style.left = `${minPercent}%`;
       progressBar.style.right = `${maxPercent}%`;
     }
-
-    if (tooltipMinRef.current) {
-      const rangeInput = tooltipMinRef.current
-        .previousElementSibling as HTMLInputElement;
-      const offset = (rangeInput.clientWidth * (value.min - min)) / (max - min);
-      tooltipMinRef.current.style.left = `calc(${offset}px)`;
-    }
-    if (tooltipMaxRef.current) {
-      const rangeInput = tooltipMaxRef.current
-        .previousElementSibling as HTMLInputElement;
-      const offset = (rangeInput.clientWidth * (value.max - min)) / (max - min);
-      tooltipMaxRef.current.style.left = `calc(${offset}px)`;
-    }
   }, [value, min, max]);
+
+  const getTooltipOffset = (value: number) => {
+    const rangeInput = document.querySelectorAll(
+      'input[type="range"]'
+    )[0] as HTMLInputElement;
+    const offset = (rangeInput.clientWidth * (value - min)) / (max - min);
+    return offset;
+  };
 
   return (
     <>
-      <div className="flex justify-between">
-        <h2 className="text-xl text-[#d5d5d5]">Release year</h2>
-        <button className="flex items-center gap-1" onClick={handleResetButton}>
+      <div className=" flex justify-between">
+        <h2 className="text-md md:text-xl text-[#d5d5d5]">Release year</h2>
+        <button
+          className="flex items-center gap-1 py-1 px-2 sm:py-1.5 sm:px-2.5 rounded-md hover:bg-[#5e6b76] hover:bg-opacity-10"
+          onClick={handleResetButton}
+        >
           <X className="text-[#4c5a67] w-4 h-4" />
           <h2 className="text-sm text-[#4c5a67] uppercase font-bold">reset</h2>
         </button>
@@ -123,6 +119,8 @@ const DualRangeSlider = ({ min, max, step }: DualRangeSliderProps) => {
                 onChange={handleMinChange}
                 onMouseDown={handleMouseDownMin}
                 onMouseUp={handleMouseUpMin}
+                onTouchStart={handleMouseDownMin}
+                onTouchEnd={handleMouseUpMin}
                 type="range"
                 min={min}
                 step={step}
@@ -132,8 +130,8 @@ const DualRangeSlider = ({ min, max, step }: DualRangeSliderProps) => {
               />
               {showTooltip.min && (
                 <div
-                  ref={tooltipMinRef}
                   className="absolute -top-8 left-0 transform -translate-x-1/2 bg-[#4c5a67] text-white text-center rounded px-1"
+                  style={{ left: `${getTooltipOffset(value.min)}px` }}
                 >
                   {value.min}
                 </div>
@@ -144,6 +142,8 @@ const DualRangeSlider = ({ min, max, step }: DualRangeSliderProps) => {
                 onChange={handleMaxChange}
                 onMouseDown={handleMouseDownMax}
                 onMouseUp={handleMouseUpMax}
+                onTouchStart={handleMouseDownMax}
+                onTouchEnd={handleMouseUpMax}
                 type="range"
                 min={min}
                 step={step}
@@ -153,8 +153,8 @@ const DualRangeSlider = ({ min, max, step }: DualRangeSliderProps) => {
               />
               {showTooltip.max && (
                 <div
-                  ref={tooltipMaxRef}
                   className="absolute -top-8 transform -translate-x-1/2 bg-[#4c5a67] text-white text-center rounded px-1"
+                  style={{ left: `${getTooltipOffset(value.max)}px` }}
                 >
                   {value.max}
                 </div>

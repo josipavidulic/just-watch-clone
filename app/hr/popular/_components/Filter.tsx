@@ -78,39 +78,45 @@ const Filter = () => {
   ];
 
   return (
-    <div className="relative flex items-center justify-center gap-2 sm:gap-4 ">
-      {filterList.map((filter) => (
-        <Fragment key={filter.id}>
-          <button
-            onClick={() => toggleFilter(filter.id)}
-            key={filter.id}
-            className={cn(
-              `relative flex justify-center items-center py-1 px-2 sm:py-1.5 sm:px-2.5 rounded-md gap-1 sm:gap-2 text-[#b9bdcc]`,
-              filter.isActive && "bg-[#434f5b]"
-            )}
-          >
-            <h3
+    <div className="relative max-[402px]:self-center flex max-[402px]:flex-col  items-center justify-center gap-2 sm:gap-4">
+      <div className="flex items-center justify-center gap-2  max-[402px]:order-2">
+        {filterList.map((filter) => (
+          <Fragment key={filter.id}>
+            <button
+              onClick={() => toggleFilter(filter.id)}
+              key={filter.id}
               className={cn(
-                "text-sm sm:text-md font-medium text-nowrap",
-                filter.isActive && "font-semibold text-[#fff]"
+                `relative flex justify-center items-center py-1 px-2 sm:py-1.5 sm:px-2.5 rounded-md gap-1 sm:gap-2 text-[#b9bdcc]`,
+                filter.isActive && "bg-[#434f5b]"
               )}
             >
-              {filter.filterName}
-            </h3>
-            {activeFilterId === filter.id ? <ChevronUp /> : <ChevronDown />}
-          </button>
-          {activeFilterId === filter.id && (
-            <div
-              ref={ref}
-              className="z-10 mt-2 top-full absolute flex flex-col gap-6 p-6 rounded-md max-w-[400px]  sm:w-[400px] bg-[#10161d]"
-            >
-              {filter.content}
-            </div>
-          )}
-        </Fragment>
-      ))}
+              <h3
+                className={cn(
+                  "text-sm sm:text-md font-medium text-nowrap",
+                  filter.isActive && "font-semibold text-[#fff]"
+                )}
+              >
+                {filter.filterName}
+              </h3>
+              {activeFilterId === filter.id ? (
+                <ChevronUp className="max-sm:w-4 max-sm:h-4" />
+              ) : (
+                <ChevronDown className="max-sm:w-4 max-sm:h-4" />
+              )}
+            </button>
+            {activeFilterId === filter.id && (
+              <div
+                ref={ref}
+                className="z-10 mt-2 top-full absolute flex flex-col gap-6 p-6 rounded-md min-w-[250px] max-w-[350px]  sm:w-[400px] bg-[#10161d]"
+              >
+                {filter.content}
+              </div>
+            )}
+          </Fragment>
+        ))}
+      </div>
       <button
-        className="flex items-center gap-1"
+        className="flex items-center gap-1 max-[402px]:order-1 py-1 px-2 sm:py-1.5 sm:px-2.5 rounded-md hover:bg-[#5e6b76] hover:bg-opacity-10"
         onClick={handleResetButton}
         disabled={filterList.every((filter) => filter.isActive === false)}
       >

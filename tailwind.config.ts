@@ -26,6 +26,10 @@ const config: Config = {
           "linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.1), #000)",
         "blue-gradient":
           "linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.1), #060d17)",
+        "left-gradient":
+          "linear-gradient(-90deg, transparent, rgba(0, 0, 0, 0.1), #060d17)",
+        "right-gradient":
+          "linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), #060d17)",
         "card-gradient":
           "linear-gradient(180deg, #11181f, rgba(17, 24, 31, 0))",
       },

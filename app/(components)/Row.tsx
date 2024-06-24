@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils";
 import { ResponseData } from "@/types/types";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import React, { useRef, useState, useEffect, useContext } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Card from "./Card";
 
 interface RowProps {
@@ -64,9 +64,9 @@ const Row = ({
       {canScrollLeft && (
         <button
           onClick={slideLeft}
-          className="absolute left-0 w-12 h-full bg-[#060d17] bg-opacity-60 z-10 transition-opacity opacity-0 group-hover:opacity-100"
+          className="absolute left-0 w-8 sm:w-12 h-full bg-[#060d17] bg-opacity-60 z-10 transition-opacity opacity-0 group-hover:opacity-100"
         >
-          <ChevronLeft className="w-12 h-12 text-white" />
+          <ChevronLeft className="w-8 h-8 sm:w-12 sm:h-12 text-white" />
         </button>
       )}
 
@@ -99,9 +99,9 @@ const Row = ({
       {canScrollRight && (
         <button
           onClick={slideRight}
-          className="absolute right-0 w-12 h-full  bg-[#060d17] bg-opacity-60 z-10 transition-opacity opacity-0 group-hover:opacity-100"
+          className="absolute right-0 w-8 sm:w-12 h-full bg-[#060d17] bg-opacity-60 z-10 transition-opacity opacity-0 group-hover:opacity-100"
         >
-          <ChevronRight className="w-12 h-12 text-white" />
+          <ChevronRight className="w-8 h-8 sm:w-12 sm:h-12 text-white" />
         </button>
       )}
     </div>

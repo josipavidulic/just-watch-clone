@@ -9,7 +9,7 @@ interface BannerImageProps {
 const BannerImage = ({ alt, backdrop }: BannerImageProps) => {
   return (
     <>
-      <div className="hidden sm:block h-[450px] w-full overflow-hidden">
+      <div className="hidden sm:block h-[450px] w-full overflow-hidden max-w-[1752px] mx-auto">
         <Image
           src={`https://image.tmdb.org/t/p/original/${backdrop}`}
           alt={alt}
