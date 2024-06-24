@@ -1,6 +1,6 @@
 "use client";
 import { movieGenres } from "@/lib/responses";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   Dispatch,
   ReactNode,
@@ -42,6 +42,40 @@ export const useFilter = () => {
 
 export const FilterProvider = ({ children }: { children: ReactNode }) => {
   const [filters, setFilters] = useState<FilterState>(initialFilters);
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  useEffect(() => {
+    const releaseYearFrom = searchParams.get("releaseYearFrom");
+    const releaseYearUntil = searchParams.get("releaseYearUntil");
+    const genres = searchParams.get("genres");
+    const rating = searchParams.get("rating");
+
+    setFilters({
+      releaseYearFrom: releaseYearFrom ? parseInt(releaseYearFrom, 10) : 1900,
+      releaseYearUntil: releaseYearUntil
+        ? parseInt(releaseYearUntil, 10)
+        : new Date().getFullYear(),
+      genres: genres ? genres.split(",").map(Number) : [],
+      rating: rating ? parseFloat(rating) : 0,
+    });
+  }, [searchParams]);
+
+  useEffect(() => {
+    const query = new URLSearchParams();
+
+    if (filters.releaseYearFrom !== 1900)
+      query.set("releaseYearFrom", filters.releaseYearFrom.toString());
+    if (filters.releaseYearUntil !== new Date().getFullYear())
+      query.set("releaseYearUntil", filters.releaseYearUntil.toString());
+    if (filters.genres.length > 0)
+      query.set("genres", filters.genres.join(","));
+    if (filters.rating !== 0) query.set("rating", filters.rating.toString());
+
+    const queryString = query.toString();
+    router.replace(`${pathname}?${queryString}`);
+  }, [filters, router, pathname]);
 
   return (
     <FilterContext.Provider value={{ filters, setFilters }}>

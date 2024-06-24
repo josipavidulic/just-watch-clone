@@ -6,29 +6,21 @@ export const updateQueryParams = (
   router: AppRouterInstance,
   filters: FilterState
 ) => {
-  const queryParams = new URLSearchParams();
-  const params: { [key: string]: string } = {};
-
-  queryParams.forEach((_, key) => {
-    queryParams.delete(key);
-  });
+  const queryParams = [];
   if (filters.genres.length > 0) {
-    params["genres"] = filters.genres.join(",");
+    queryParams.push(`genres=${filters.genres.join(",")}`);
   }
   if (filters.releaseYearFrom !== 1900) {
-    params["release_year_from"] = String(filters.releaseYearFrom);
+    queryParams.push(`release_year_from=${filters.releaseYearFrom}`);
   }
   if (filters.releaseYearUntil !== new Date().getFullYear()) {
-    params["release_year_until"] = String(filters.releaseYearUntil);
+    queryParams.push(`release_year_until=${filters.releaseYearUntil}`);
   }
   if (filters.rating > 0) {
-    params["rating_imdb"] = String(filters.rating);
+    queryParams.push(`rating_imdb=${filters.rating}`);
   }
 
-  Object.entries(params).forEach(([key, value]) => {
-    queryParams.set(key, value);
-  });
+  const queryString = queryParams.join("&");
 
-  const query = queryParams.toString();
-  router.push(`${pathname}?${query}`);
+  router.push(`${pathname}${queryString ? `?${queryString}` : ""}`);
 };

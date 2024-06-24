@@ -20,10 +20,10 @@ const SingleRangeSlider: React.FC<SingleRangeSliderProps> = ({
   max,
   step,
 }) => {
+  const { filters, setFilters } = useFilter();
   const progressRef = useRef<HTMLDivElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
-  const [value, setValue] = useState<number>(min);
-  const { setFilters } = useFilter();
+  const [value, setValue] = useState<number>(filters.rating);
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

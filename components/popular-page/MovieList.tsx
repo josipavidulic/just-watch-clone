@@ -6,42 +6,46 @@ import { ResponseData, TMDbResponse } from "@/types/types";
 import { getData } from "@/app/actions";
 import { useFilter } from "@/context/FilterContext";
 import { buildUrl } from "@/lib/buildFilterUrl";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { updateQueryParams } from "@/lib/updateQueryParams";
+import Image from "next/image";
 
 const MovieList = () => {
   const { filters } = useFilter();
   const observer = useRef<IntersectionObserver | null>(null);
-  const router = useRouter();
-  const pathname = usePathname();
   const [movies, setMovies] = useState<ResponseData[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    setPage(1);
-    setMovies([]);
-    updateQueryParams(pathname, router, filters);
-  }, [filters, pathname, router]);
-
-  const loadMovies = useCallback(async () => {
-    try {
-      setLoading(true);
-      const url = buildUrl(filters, page);
-      const data = await getData<TMDbResponse>(url);
-      if (data.results) {
-        setMovies((prevMovies) => [...prevMovies, ...data.results]);
+  const loadMovies = useCallback(
+    async (newPage: number) => {
+      try {
+        setLoading(true);
+        const url = buildUrl(filters, newPage);
+        const data = await getData<TMDbResponse>(url);
+        if (data.results) {
+          setMovies((prevMovies) =>
+            newPage === 1 ? data.results : [...prevMovies, ...data.results]
+          );
+        }
+      } catch (error) {
+        console.error("Error loading movies:", error);
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      console.error("Error loading movies:", error);
-    } finally {
-      setLoading(false);
-    }
-  }, [filters, page]);
+    },
+    [filters]
+  );
 
   useEffect(() => {
-    loadMovies();
-  }, [loadMovies]);
+    setMovies([]);
+    setPage(1);
+    loadMovies(1);
+  }, [filters, loadMovies]);
+
+  useEffect(() => {
+    if (page !== 1) {
+      loadMovies(page);
+    }
+  }, [page, loadMovies]);
 
   const lastMovieElementRef = useCallback((node: HTMLDivElement) => {
     if (observer.current) observer.current.disconnect();
@@ -53,10 +57,21 @@ const MovieList = () => {
     if (node) observer.current.observe(node);
   }, []);
 
-  if (loading) {
+  if (loading && movies.length === 0) {
     return (
       <div className="w-full h-full flex flex-col gap-3 items-center justify-center mt-64">
         <div className="w-10 h-10 border-4 border-[#fff] border-opacity-50 border-t-blue-400 rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (!loading && movies.length === 0) {
+    return (
+      <div className="w-full h-full flex flex-col gap-3 items-center justify-center mt-64">
+        <Image src="/no-movies.svg" alt="no-movies" width={150} height={150} />
+        <h2 className="text-[#fff] text-xl font-semibold">
+          There&apos;s nothing here
+        </h2>
       </div>
     );
   }

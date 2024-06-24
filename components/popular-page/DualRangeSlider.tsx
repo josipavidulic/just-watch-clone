@@ -1,4 +1,4 @@
-import { FilterState, useFilter } from "@/context/FilterContext";
+import { useFilter } from "@/context/FilterContext";
 import { X } from "lucide-react";
 import React, {
   useState,
@@ -18,10 +18,10 @@ const DualRangeSlider = ({ min, max, step }: DualRangeSliderProps) => {
   const progressRef = useRef<HTMLDivElement>(null);
   const tooltipMinRef = useRef<HTMLDivElement>(null);
   const tooltipMaxRef = useRef<HTMLDivElement>(null);
-  const { setFilters } = useFilter();
+  const { filters, setFilters } = useFilter();
   const [value, setValue] = useState<{ min: number; max: number }>({
-    min,
-    max,
+    min: filters.releaseYearFrom,
+    max: filters.releaseYearUntil,
   });
   const [showTooltip, setShowTooltip] = useState<{
     min: boolean;

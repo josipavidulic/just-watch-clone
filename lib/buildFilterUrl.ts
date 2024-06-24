@@ -1,7 +1,7 @@
 import { FilterState } from "@/context/FilterContext";
 import { apiKey } from "./requests";
 
-export const buildUrl = (filters: FilterState, page: number): string => {
+export const buildUrl = (filters: FilterState, page: number = 1): string => {
   let url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}`;
 
   if (filters.genres && filters.genres.length > 0) {
