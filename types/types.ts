@@ -31,6 +31,10 @@ export interface ResponseData {
   credits?: {
     cast: Cast[];
   };
+  gender?: number;
+  known_for_department?: string;
+  profile_path?: string;
+  known_for?: ResponseData[];
 }
 
 export interface TMDbResponse {

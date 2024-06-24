@@ -1,7 +1,7 @@
 export const apiKey = process.env.NEXT_PUBLIC_API_KEY_TMDB;
 
 export const request = {
-  trendingAll: `https://api.themoviedb.org/3/trending/all/week?api_key=${apiKey}`,
+  trendingAll: `https://api.themoviedb.org/3/trending/all/week?api_key=${apiKey}&language=hr-HR`,
   trendingMovies: `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&language=hr-HR&page=1&region=ISO%203166-2%3AHR`,
   trendingTVShows: `https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}&language=hr-HR&page=1&region=ISO%203166-2%3AHR`,
   latestMovies: `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`,

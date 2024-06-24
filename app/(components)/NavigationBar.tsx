@@ -10,8 +10,8 @@ import { cn } from "@/lib/utils";
 
 const menuOptions: LinkButton[] = [
   { id: 0, name: "Početna", href: "/discover" },
-  { id: 1, name: "Najgledanije", href: "/hr/popular" },
-  { id: 2, name: "Liste", href: "/hr/lists" },
+  { id: 1, name: "Najgledanije", href: "/popular" },
+  { id: 2, name: "Liste", href: "/lists" },
 ];
 
 const NavigationBar = () => {
@@ -31,7 +31,13 @@ const NavigationBar = () => {
       <div className="flex flex-col lg:flex-row items-center justify-between font-lato text-sm text-[#8c8c8c] ">
         <div className="max-lg:w-full flex items-center justify-between lg:px-3">
           <Menu className="block lg:hidden" />
-          <Link href="/" className="max-lg:p-5 lg:pr-6 flex-shrink-0 lg:mr-80">
+          <Link
+            href="/"
+            className={cn(
+              "max-lg:p-5 lg:pr-6 flex-shrink-0",
+              isHomePage && "lg:mr-80"
+            )}
+          >
             <Image
               src="/justwatch-logo.svg"
               alt="logo"
@@ -63,11 +69,7 @@ const NavigationBar = () => {
               </Link>
             ))}
           </div>
-          <SearchInput
-            isExpanded={isExpanded}
-            setIsExpanded={setIsExpanded}
-            isHomePage={isHomePage}
-          />
+          <SearchInput isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
           <button className="hidden lg:flex items-center justify-center text-[#fff] text-sm bg-[#1c252f] rounded-md py-3 px-6 hover:bg-[#383d47] h-[35px]">
             Prijava
           </button>

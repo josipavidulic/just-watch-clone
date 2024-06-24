@@ -79,7 +79,7 @@ const GlobalLargeSpotlight = ({ slides }: GlobalLargeSpotlightProps) => {
 
                   <div className="px-5 py-2.5 w-fit bg-[#fbc500] hover:bg-[#ddad00] text-black rounded-sm flex items-center gap-1 justify-center">
                     <Info className="w-5 h-5 fill-black text-[#fbc500]" />
-                    More info
+                    Više informacija
                   </div>
                 </div>
               </div>

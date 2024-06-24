@@ -1,7 +1,7 @@
-import Filter from "@/app/hr/popular/_components/Filter";
-import MovieList from "@/app/hr/popular/_components/MovieList";
 import { FilterProvider } from "@/context/FilterContext";
 import React, { Suspense } from "react";
+import Filter from "./_components/Filter";
+import MovieList from "./_components/MovieList";
 
 const page = () => {
   return (

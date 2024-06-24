@@ -1,9 +1,7 @@
 "use client";
 
 import { getData } from "@/app/actions";
-import CastList from "@/app/hr/movie/[id]/_components/Cast";
-import InformationCard from "@/app/hr/movie/[id]/_components/InformationCard";
-import Skeleteon from "@/app/hr/movie/[id]/_components/Skeleteon";
+
 import { convertMinutesToHoursAndMinutes } from "@/lib/convertMinutesToHourAndMinutes";
 import { formatVoteCount } from "@/lib/formatVoteCount";
 import { apiKey } from "@/lib/requests";
@@ -13,6 +11,9 @@ import useSWR from "swr";
 import BannerImage from "./_components/BannerImage";
 import Card from "@/app/(components)/Card";
 import { getCroatianGenres } from "@/lib/getCroatianGenres";
+import Skeleteon from "./_components/Skeleteon";
+import InformationCard from "./_components/InformationCard";
+import CastList from "./_components/Cast";
 
 const Page: React.FC = () => {
   const [movieId, setMovieId] = useState<number | null>(null);
@@ -75,6 +76,7 @@ const Page: React.FC = () => {
           <Card
             hasFavoriteIcon={true}
             card={movieDetails}
+            clickable={false}
             className=" w-[350px] lg:w-[500px] h-[500px]"
           />
           <div className=" flex flex-col gap-12 w-full">

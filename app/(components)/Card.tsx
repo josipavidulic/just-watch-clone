@@ -13,9 +13,15 @@ interface CardProps {
   card: ResponseData;
   hasFavoriteIcon?: boolean;
   className?: string;
+  clickable?: boolean;
 }
 
-const Card = ({ card, hasFavoriteIcon, className }: CardProps) => {
+const Card = ({
+  card,
+  hasFavoriteIcon,
+  className,
+  clickable = true,
+}: CardProps) => {
   const { favoriteMovies, addFavoriteMovie, removeFavoriteMovie } =
     useFavorites();
   const router = useRouter();
@@ -35,13 +41,13 @@ const Card = ({ card, hasFavoriteIcon, className }: CardProps) => {
     e.preventDefault();
     if (card.original_title) {
       localStorage.setItem("movieId", id.toString());
-      router.push(`/hr/movie/${kebabCase(title)}`);
+      router.push(`/movie/${kebabCase(title)}`);
     }
   };
 
   return (
     <div
-      onClick={(e) => handleDetails(card.id, e)}
+      onClick={clickable ? (e) => handleDetails(card.id, e) : () => {}}
       className={cn(
         "relative flex bg-[#0a151f] overflow-hidden outline-none text-[#78a6b8] cursor-pointer",
         className
@@ -59,7 +65,7 @@ const Card = ({ card, hasFavoriteIcon, className }: CardProps) => {
       )}
       <Image
         src={`https://image.tmdb.org/t/p/original/${card?.poster_path}`}
-        alt={(card.original_title as string) ?? card.name}
+        alt={(card.original_title as string) ?? card.original_name}
         width={190}
         height={270}
         className={cn("block w-full h-[270px] rounded-md", className)}
