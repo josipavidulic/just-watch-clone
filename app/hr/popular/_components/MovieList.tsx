@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import Card from "@/components/Card";
+import Card from "@/app/(components)/Card";
 import { ResponseData, TMDbResponse } from "@/types/types";
 import { getData } from "@/app/actions";
 import { useFilter } from "@/context/FilterContext";

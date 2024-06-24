@@ -5649,27 +5649,27 @@ export const tvProvidersResponse = [
 export const movieGenres = [
   {
     id: 28,
-    name: "Action",
+    name: "Akcija",
   },
   {
     id: 12,
-    name: "Adventure",
+    name: "Avantura",
   },
   {
     id: 16,
-    name: "Animation",
+    name: "Animirani filmovi",
   },
   {
     id: 35,
-    name: "Comedy",
+    name: "Komedija",
   },
   {
     id: 80,
-    name: "Crime",
+    name: "Krimić",
   },
   {
     id: 99,
-    name: "Documentary",
+    name: "Dokumentarac",
   },
   {
     id: 18,
@@ -5677,114 +5677,43 @@ export const movieGenres = [
   },
   {
     id: 10751,
-    name: "Family",
+    name: "Djeca i obitelj",
   },
   {
     id: 14,
-    name: "Fantasy",
+    name: "Fantazija",
   },
   {
     id: 36,
-    name: "History",
+    name: "Povijest",
   },
   {
     id: 27,
-    name: "Horror",
+    name: "Horor",
   },
   {
     id: 10402,
-    name: "Music",
+    name: "Glazba",
   },
   {
     id: 9648,
-    name: "Mystery",
+    name: "Misterij",
   },
   {
     id: 10749,
-    name: "Romance",
+    name: "Romantika",
   },
   {
     id: 878,
-    name: "Science Fiction",
-  },
-  {
-    id: 10770,
-    name: "TV Movie",
+    name: "SF",
   },
   {
     id: 53,
-    name: "Thriller",
+    name: "Triler",
   },
   {
     id: 10752,
-    name: "War",
-  },
-  {
-    id: 37,
-    name: "Western",
-  },
-];
-
-export const tvGenres = [
-  {
-    id: 10759,
-    name: "Action & Adventure",
-  },
-  {
-    id: 16,
-    name: "Animation",
-  },
-  {
-    id: 35,
-    name: "Comedy",
-  },
-  {
-    id: 80,
-    name: "Crime",
-  },
-  {
-    id: 99,
-    name: "Documentary",
-  },
-  {
-    id: 18,
-    name: "Drama",
-  },
-  {
-    id: 10751,
-    name: "Family",
-  },
-  {
-    id: 10762,
-    name: "Kids",
-  },
-  {
-    id: 9648,
-    name: "Mystery",
-  },
-  {
-    id: 10763,
-    name: "News",
-  },
-  {
-    id: 10764,
-    name: "Reality",
-  },
-  {
-    id: 10765,
-    name: "Sci-Fi & Fantasy",
-  },
-  {
-    id: 10766,
-    name: "Soap",
-  },
-  {
-    id: 10767,
-    name: "Talk",
-  },
-  {
-    id: 10768,
-    name: "War & Politics",
+    name: "Rat",
   },
   {
     id: 37,

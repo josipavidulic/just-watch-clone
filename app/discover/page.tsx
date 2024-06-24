@@ -1,30 +1,30 @@
-import ListContainer from "@/components/discover-page/ListContainer";
 import { request } from "@/lib/requests";
 import React from "react";
+import ListContainer from "./_components/ListContainer";
 const discoverList = [
   {
     id: 0,
-    title: "Newest movies",
+    title: "Najnoviji filmovi",
     requestType: request.latestMovies,
     lastElemement: -1,
   },
   {
     id: 1,
-    title: "Top 3 highest rated movies",
+    title: "Top 3 najbolje ocijenjeni filmovi",
     requestType: request.topRatedMovies,
     lastElemement: 3,
   },
 
   {
     id: 2,
-    title: "Top 10 in 🇭🇷 today",
+    title: "Top 10 u 🇭🇷 danas",
     requestType: request.popularMovies,
     showRankingNumber: true,
     lastElemement: 10,
   },
   {
     id: 3,
-    title: "Action",
+    title: "Akcija",
     requestType: request.actionMovies,
     lastElemement: -1,
   },
@@ -36,7 +36,7 @@ const discoverList = [
   },
   {
     id: 5,
-    title: "Music in movie",
+    title: "Glazba u filmu",
     requestType: request.musicMovies,
     lastElemement: -1,
   },

@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
-import Card from "@/components/Card";
+
 import { ResponseData } from "@/types/types";
 import { useFavorites } from "@/context/FavoriteContext";
+import Card from "@/app/(components)/Card";
 
 const Page = () => {
   const { favoriteMovies } = useFavorites();

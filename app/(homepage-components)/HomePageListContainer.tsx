@@ -1,9 +1,9 @@
 import { getData } from "@/app/actions";
 import { cn } from "@/lib/utils";
 import React from "react";
-import Row from "../Row";
 import uuid from "react-uuid";
 import { TMDbResponse } from "@/types/types";
+import Row from "../(components)/Row";
 
 interface HomePageListContainerProps {
   title?: string;

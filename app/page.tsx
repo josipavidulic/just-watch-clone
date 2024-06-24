@@ -1,12 +1,13 @@
-import GlobalLargeSpotlight from "@/components/home-page/GlobalLargeSpotlight";
-import HeroSection from "@/components/home-page/HeroSection";
-import StaticCard from "@/components/home-page/StaticCard";
 import { getData } from "./actions";
 
 import { request } from "@/lib/requests";
-import HomePageListContainer from "@/components/home-page/HomePageListContainer";
-import Footer from "@/components/home-page/HomePageFooter";
+
 import { TMDbResponse } from "@/types/types";
+import HeroSection from "./(homepage-components)/HeroSection";
+import StaticCard from "./(homepage-components)/StaticCard";
+import HomePageListContainer from "./(homepage-components)/HomePageListContainer";
+import GlobalLargeSpotlight from "./(homepage-components)/GlobalLargeSpotlight";
+import Footer from "./(homepage-components)/HomePageFooter";
 
 const staticCards = [
   {

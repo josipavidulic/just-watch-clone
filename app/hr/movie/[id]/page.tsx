@@ -1,18 +1,18 @@
 "use client";
 
 import { getData } from "@/app/actions";
-import Card from "@/components/Card";
-import BannerImage from "@/components/details-page/BannerImage";
-import CastList from "@/components/details-page/Cast";
-import InformationCard from "@/components/details-page/InformationCard";
-import Skeleteon from "@/components/details-page/Skeleteon";
+import CastList from "@/app/hr/movie/[id]/_components/Cast";
+import InformationCard from "@/app/hr/movie/[id]/_components/InformationCard";
+import Skeleteon from "@/app/hr/movie/[id]/_components/Skeleteon";
 import { convertMinutesToHoursAndMinutes } from "@/lib/convertMinutesToHourAndMinutes";
 import { formatVoteCount } from "@/lib/formatVoteCount";
-import { getNames } from "@/lib/getNames";
 import { apiKey } from "@/lib/requests";
-import { Cast, ResponseData } from "@/types/types";
+import { ResponseData } from "@/types/types";
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
+import BannerImage from "./_components/BannerImage";
+import Card from "@/app/(components)/Card";
+import { getCroatianGenres } from "@/lib/getCroatianGenres";
 
 const Page: React.FC = () => {
   const [movieId, setMovieId] = useState<number | null>(null);
@@ -48,14 +48,19 @@ const Page: React.FC = () => {
         movieDetails.vote_count
       )})`,
     },
-    { title: "žanrovi", content: getNames(movieDetails.genres).join(", ") },
+    {
+      title: "žanrovi",
+      content: getCroatianGenres(movieDetails.genres).join(", "),
+    },
     {
       title: "trajanje",
       content: convertMinutesToHoursAndMinutes(movieDetails.runtime ?? 0),
     },
     {
       title: "zemlja proizvodnje",
-      content: getNames(movieDetails.production_countries).join(", "),
+      content: movieDetails.production_countries
+        .map((country) => country.name)
+        .join(", "),
     },
   ];
 

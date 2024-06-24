@@ -1,8 +1,9 @@
 import React from "react";
-import Row from "../Row";
+
 import { getData } from "@/app/actions";
 import uuid from "react-uuid";
 import { TMDbResponse } from "@/types/types";
+import Row from "@/app/(components)/Row";
 
 interface ListContainerProps {
   title: string;
