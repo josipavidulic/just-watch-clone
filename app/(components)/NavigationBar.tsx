@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import SearchInput from "./SearchInput";
 import { LinkButton } from "@/types/types";
-import { Menu, UserRoundCog } from "lucide-react";
+import { Bookmark, Menu, UserRoundCog } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
@@ -33,7 +33,7 @@ const NavigationBar = () => {
     >
       <div className="flex flex-col lg:flex-row items-center justify-between font-lato text-sm text-[#8c8c8c] ">
         <div className="max-lg:w-full flex items-center justify-between lg:px-3">
-          <Menu className="block lg:hidden" />
+          <Menu className="block lg:hidden w-5 h-5" />
           <Link
             href="/"
             className={cn(
@@ -53,8 +53,12 @@ const NavigationBar = () => {
               }`}
             />
           </Link>
-
-          <UserRoundCog className="block lg:hidden" />
+          <div className="flex items-center justify-center gap-4">
+            <Link href="/lists">
+              <Bookmark className="block lg:hidden w-5 h-5" />
+            </Link>
+            <UserRoundCog className="block lg:hidden w-5 h-5 " />
+          </div>
         </div>
         <div
           className={`flex w-full items-center overflow-visible gap-4 lg:px-3 `}
