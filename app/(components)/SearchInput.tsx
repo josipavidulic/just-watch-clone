@@ -108,7 +108,7 @@ const SearchInput = () => {
       }`}
     >
       <div className="h-[38px] py-1 flex items-center justify-center ">
-        <Search className="w-5 h-5 m-1 sm:m-4" />
+        <Search className="w-5 h-5 m-2 sm:m-4" />
         <input
           value={value}
           onChange={(e) => setValue(e.target.value)}
