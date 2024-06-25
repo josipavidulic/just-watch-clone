@@ -5,6 +5,7 @@ import { FavoritesProvider } from "@/context/FavoriteContext";
 import NavigationBar from "./(components)/NavigationBar";
 import { Suspense } from "react";
 import { ExpandedStateProvider } from "@/context/ExpandendStateContext";
+import { FilterProvider } from "@/context/FilterContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,10 +27,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <Suspense>
           <FavoritesProvider>
-            <ExpandedStateProvider>
-              <NavigationBar />
-              {children}
-            </ExpandedStateProvider>
+            <FilterProvider>
+              <ExpandedStateProvider>
+                <NavigationBar />
+                {children}
+              </ExpandedStateProvider>
+            </FilterProvider>
           </FavoritesProvider>
         </Suspense>
       </body>
