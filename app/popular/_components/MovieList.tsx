@@ -70,7 +70,7 @@ const MovieList = () => {
       <div className="w-full h-full flex flex-col gap-3 items-center justify-center mt-64">
         <Image src="/no-movies.svg" alt="no-movies" width={150} height={150} />
         <h2 className="text-[#fff] text-xl font-semibold">
-          There&apos;s nothing here
+          Nije pronađen film za ove filtere
         </h2>
       </div>
     );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useFavorites } from "@/context/FavoriteContext";
+import { handleDetailsPage } from "@/lib/handleDetailsPage";
 import { kebabCase } from "@/lib/kebabCase";
 import { cn } from "@/lib/utils";
 import { ResponseData } from "@/types/types";
@@ -36,18 +37,14 @@ const Card = ({
       removeFavoriteMovie(movie);
     }
   };
-
-  const handleDetails = (id: number, e: React.MouseEvent) => {
-    e.preventDefault();
-    if (card.original_title) {
-      localStorage.setItem("movieId", id.toString());
-      router.push(`/movie/${kebabCase(title)}`);
-    }
+  const handleDetails = (e: React.MouseEvent) => {
+    const url = handleDetailsPage(card, e);
+    router.push(url);
   };
 
   return (
     <div
-      onClick={clickable ? (e) => handleDetails(card.id, e) : () => {}}
+      onClick={clickable ? (e) => handleDetails(e) : () => {}}
       className={cn(
         "relative flex bg-[#0a151f] overflow-hidden outline-none text-[#78a6b8] cursor-pointer",
         className
@@ -65,7 +62,7 @@ const Card = ({
       )}
       <Image
         src={`https://image.tmdb.org/t/p/original/${card?.poster_path}`}
-        alt={(card.original_title as string) ?? card.original_name}
+        alt={title}
         width={190}
         height={270}
         className={cn("block w-full h-[270px] rounded-md", className)}

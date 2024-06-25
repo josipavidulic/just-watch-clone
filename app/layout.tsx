@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { FavoritesProvider } from "@/context/FavoriteContext";
 import NavigationBar from "./(components)/NavigationBar";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,10 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <FavoritesProvider>
-          <NavigationBar />
-          {children}
-        </FavoritesProvider>
+        <Suspense>
+          <FavoritesProvider>
+            <NavigationBar />
+            {children}
+          </FavoritesProvider>
+        </Suspense>
       </body>
     </html>
   );

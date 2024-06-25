@@ -26,6 +26,7 @@ export interface ResponseData {
   first_air_date?: string;
   origin_country?: string[];
   runtime?: number;
+  episode_run_time?: number[];
   genres: { id: number; name: string }[];
   production_countries: { iso_3166_1: string; name: string }[];
   credits?: {
@@ -35,6 +36,7 @@ export interface ResponseData {
   known_for_department?: string;
   profile_path?: string;
   known_for?: ResponseData[];
+  last_episode_to_air: { runtime: number };
 }
 
 export interface TMDbResponse {

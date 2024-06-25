@@ -17,7 +17,7 @@ const HeroSection = () => {
       <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 z-10">
         <Link
           href="/discover"
-          className="rounded-lg text-base font-bold border02 bg-[#fbc500] hover:bg-[#ddad00] text-[#000] py-4 px-10 sm:px-16"
+          className="rounded-lg text-base font-bold  bg-[#fbc500] hover:bg-[#ddad00] text-[#000] py-4 px-10 sm:px-16"
         >
           Otkrijte filmove i serije
         </Link>

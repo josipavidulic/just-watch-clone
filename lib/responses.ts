@@ -5720,3 +5720,70 @@ export const movieGenres = [
     name: "Western",
   },
 ];
+
+export const tvGenres = [
+  {
+    id: 10759,
+    name: "Akcija i Avantura",
+  },
+  {
+    id: 16,
+    name: "Animirana serija",
+  },
+  {
+    id: 35,
+    name: "Komedija",
+  },
+  {
+    id: 80,
+    name: "Krimić",
+  },
+  {
+    id: 99,
+    name: "Dokumentarac",
+  },
+  {
+    id: 18,
+    name: "Drama",
+  },
+  {
+    id: 10751,
+    name: "Obitelj",
+  },
+  {
+    id: 10762,
+    name: "Djeca",
+  },
+  {
+    id: 9648,
+    name: "Misterij",
+  },
+  {
+    id: 10763,
+    name: "Vijesti",
+  },
+  {
+    id: 10764,
+    name: "Reality",
+  },
+  {
+    id: 10765,
+    name: "SF",
+  },
+  {
+    id: 10766,
+    name: "Sapunica",
+  },
+  {
+    id: 10767,
+    name: "Talk emisije",
+  },
+  {
+    id: 10768,
+    name: "Rat i politika",
+  },
+  {
+    id: 37,
+    name: "Western",
+  },
+];

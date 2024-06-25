@@ -126,7 +126,7 @@ export default async function Home() {
           key={container.rowId}
         />
       ))}
-      <GlobalLargeSpotlight slides={data.results.slice(10)} />
+      <GlobalLargeSpotlight slides={data.results.slice(0, 10)} />
       {listContainers.slice(2).map((container) => (
         <HomePageListContainer
           title={container.title}

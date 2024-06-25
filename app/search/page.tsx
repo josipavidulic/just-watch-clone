@@ -1,5 +1,11 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  Suspense,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { getData } from "../actions";
 import { apiKey } from "@/lib/requests";
 import { ResponseData, TMDbResponse } from "@/types/types";
@@ -15,9 +21,11 @@ const Page = () => {
 
   const fetchSearchData = useCallback(
     async (newPage: number) => {
+      if (!query) return;
+
       try {
         const data = await getData<TMDbResponse>(
-          `https://api.themoviedb.org/3/search/multi?query=${query}&api_key=${apiKey}&include_adult=false&language=hr-HR&page=${page}`
+          `https://api.themoviedb.org/3/search/multi?query=${query}&api_key=${apiKey}&include_adult=false&language=hr-HR&page=${newPage}`
         );
         if (data.results) {
           setData((prevState) =>
@@ -28,10 +36,12 @@ const Page = () => {
         console.error("Error loading search data:", error);
       }
     },
-    [page, query]
+    [query]
   );
 
   useEffect(() => {
+    if (!query) return;
+
     setData([]);
     setPage(1);
     fetchSearchData(1);
@@ -54,7 +64,7 @@ const Page = () => {
   }, []);
 
   return (
-    <main className="w-full max-w-[1752px] mx-auto min-h-screen h-full bg-[#060d17] flex flex-col px-4 lg:px-16 py-2 pb-18 font-lato">
+    <main className="w-full max-w-[1752px] mx-auto min-h-screen h-full bg-[#060d17] flex flex-col px-4 lg:px-16 py-2 pb-18 font-lato gap-5">
       <h2 className="text-[#d9e8ed] font-bold text-2xl">
         Rezultati pretraživanja za: {query}
       </h2>
@@ -63,17 +73,13 @@ const Page = () => {
           .filter((item) => item.media_type !== "person")
           .map((item, index) => (
             <div
-              key={item.original_title ?? item.original_name}
-              className="flex flex-row items-start py-4 gap-5 border-t-[0.3px] border-[#1c252f]"
+              key={item.id}
+              className="flex flex-col md:flex-row items-center md:items-start  py-4 gap-5 border-b-[0.3px] border-[#1c252f]"
               ref={index === data.length - 1 ? lastMovieElementRef : null}
             >
-              <Card
-                hasFavoriteIcon={true}
-                card={item}
-                className="w-[200px] h-auto"
-              />
-              <div className="flex flex-col gap-1 text-[#b9bdcc] text-xl max-md:self-center">
-                <h2 className="text-[28px] font-semibold text-[#fff] flex">
+              <Card card={item} className="w-[200px] h-auto" />
+              <div className="flex flex-col items-center sm:items-start gap-1 text-[#b9bdcc] text-xl max-md:self-center">
+                <h2 className="text-xl sm:text-2xl font-semibold text-[#fff] flex items-center">
                   {(item.title as string) ?? item.name}
                   <p className="text-[#b9bdcc] text-xl font-thin whitespace-pre">
                     {` (${
@@ -82,7 +88,7 @@ const Page = () => {
                     })`}
                   </p>
                 </h2>
-                <p>{`Izvorni naziv: ${
+                <p className="text-md">{`Izvorni naziv: ${
                   item.original_title ?? item.original_name
                 }`}</p>
               </div>

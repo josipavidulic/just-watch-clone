@@ -1,8 +1,10 @@
 "use client";
 import { formatVoteCount } from "@/lib/formatVoteCount";
+import { handleDetailsPage } from "@/lib/handleDetailsPage";
 import { ResponseData } from "@/types/types";
 import { ChevronLeft, ChevronRight, Info } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 interface GlobalLargeSpotlightProps {
@@ -11,6 +13,7 @@ interface GlobalLargeSpotlightProps {
 
 const GlobalLargeSpotlight = ({ slides }: GlobalLargeSpotlightProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -26,6 +29,11 @@ const GlobalLargeSpotlight = ({ slides }: GlobalLargeSpotlightProps) => {
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  const handleItemClick = (slide: ResponseData, e: React.MouseEvent) => {
+    const url = handleDetailsPage(slide, e);
+    router.push(url);
   };
 
   return (
@@ -77,10 +85,13 @@ const GlobalLargeSpotlight = ({ slides }: GlobalLargeSpotlightProps) => {
                       : slide.overview}
                   </p>
 
-                  <div className="px-5 py-2.5 w-fit bg-[#fbc500] hover:bg-[#ddad00] text-black rounded-sm flex items-center gap-1 justify-center">
+                  <button
+                    onClick={(e) => handleItemClick(slide, e)}
+                    className="px-5 py-2.5 w-fit bg-[#fbc500] hover:bg-[#ddad00] text-black rounded-sm flex items-center gap-1 justify-center"
+                  >
                     <Info className="w-5 h-5 fill-black text-[#fbc500]" />
                     Više informacija
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
