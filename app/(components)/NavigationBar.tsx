@@ -68,7 +68,7 @@ const NavigationBar = () => {
               <Link
                 key={item.id}
                 href={item.href as string}
-                className={`hover:text-[#d5d5d5] last:hidden sm:last-block ${
+                className={`hover:text-[#d5d5d5] last:hidden sm:last:block ${
                   isExpanded && "hidden sm:block"
                 } ${pathname === item.href && "text-[#d5d5d5] font-bold"} `}
               >
