@@ -4,6 +4,7 @@ import "./globals.css";
 import { FavoritesProvider } from "@/context/FavoriteContext";
 import NavigationBar from "./(components)/NavigationBar";
 import { Suspense } from "react";
+import { ExpandedStateProvider } from "@/context/ExpandendStateContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,8 +26,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <Suspense>
           <FavoritesProvider>
-            <NavigationBar />
-            {children}
+            <ExpandedStateProvider>
+              <NavigationBar />
+              {children}
+            </ExpandedStateProvider>
           </FavoritesProvider>
         </Suspense>
       </body>

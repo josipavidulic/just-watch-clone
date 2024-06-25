@@ -76,8 +76,8 @@ const SearchInput = () => {
 
   const handleItemClick = useCallback(
     (name: string, event: React.MouseEvent<HTMLDivElement>) => {
-      setValue(name);
       event.stopPropagation();
+      setValue(name);
       setIgnoreOutsideClick(true);
       setTimeout(() => setIgnoreOutsideClick(false), 0);
       handleSearchedItems(name);
