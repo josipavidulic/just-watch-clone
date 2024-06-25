@@ -59,12 +59,12 @@ const NavigationBar = () => {
         <div
           className={`flex w-full items-center overflow-visible gap-4 lg:px-3 `}
         >
-          <div className={"flex gap-4"}>
+          <div className={"flex gap-3 sm:gap-4"}>
             {menuOptions.map((item) => (
               <Link
                 key={item.id}
                 href={item.href as string}
-                className={`hover:text-[#d5d5d5] ${
+                className={`hover:text-[#d5d5d5] last:hidden sm:last-block ${
                   isExpanded && "hidden sm:block"
                 } ${pathname === item.href && "text-[#d5d5d5] font-bold"} `}
               >

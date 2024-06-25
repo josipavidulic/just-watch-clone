@@ -107,15 +107,15 @@ const SearchInput = () => {
         isExpanded && "flex-grow rounded-b-none"
       }`}
     >
-      <div className="h-[38px] py-1 flex items-center justify-center">
-        <Search className="w-5 h-5 m-4" />
+      <div className="h-[38px] py-1 flex items-center justify-center ">
+        <Search className="w-5 h-5 m-1 sm:m-4" />
         <input
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onFocus={() => setIsExpanded(true)}
           onKeyPress={handleEnter}
           type="text"
-          placeholder="Pretražite filmove ili serije"
+          placeholder="Pretražite filmove i serije"
           className="border-none bg-transparent m-0 outline-none w-full placeholder:text-[#8c8c8c] text-[#ffff]"
         />
         {value.length > 0 && (
