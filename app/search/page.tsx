@@ -1,11 +1,5 @@
 "use client";
-import React, {
-  Suspense,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { getData } from "../actions";
 import { apiKey } from "@/lib/requests";
 import { ResponseData, TMDbResponse } from "@/types/types";

@@ -1,7 +1,5 @@
 import { getData } from "./actions";
-
 import { request } from "@/lib/requests";
-
 import { TMDbResponse } from "@/types/types";
 import HeroSection from "./(homepage-components)/HeroSection";
 import StaticCard from "./(homepage-components)/StaticCard";

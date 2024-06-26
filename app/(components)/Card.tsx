@@ -2,7 +2,6 @@
 
 import { useFavorites } from "@/context/FavoriteContext";
 import { handleDetailsPage } from "@/lib/handleDetailsPage";
-import { kebabCase } from "@/lib/kebabCase";
 import { cn } from "@/lib/utils";
 import { ResponseData } from "@/types/types";
 import { Bookmark } from "lucide-react";

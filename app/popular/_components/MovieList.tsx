@@ -7,6 +7,7 @@ import { getData } from "@/app/actions";
 import { useFilter } from "@/context/FilterContext";
 import { buildUrl } from "@/lib/buildFilterUrl";
 import Image from "next/image";
+import { fetchFilteredData } from "@/lib/fetchFilteredData";
 
 const MovieList = () => {
   const { filters } = useFilter();
@@ -20,13 +21,16 @@ const MovieList = () => {
       try {
         setLoading(true);
         const url = buildUrl(filters, newPage);
-        const data = await getData<TMDbResponse>(url);
-        if (data.results) {
+
+        const data = await fetchFilteredData(url);
+
+        if (data) {
           setMovies((prevMovies) =>
-            newPage === 1 ? data.results : [...prevMovies, ...data.results]
+            newPage === 1 ? data : [...prevMovies, ...data]
           );
         }
       } catch (error) {
+        console.log(error);
         console.error("Error loading movies:", error);
       } finally {
         setLoading(false);

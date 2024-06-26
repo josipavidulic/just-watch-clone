@@ -1,4 +1,4 @@
-import { FilterState, useFilter } from "@/context/FilterContext";
+import { useFilter } from "@/context/FilterContext";
 import { movieGenres } from "@/lib/responses";
 import { cn } from "@/lib/utils";
 import { Check, X } from "lucide-react";
@@ -52,7 +52,7 @@ const GenresContent = () => {
             )}
           >
             <Check
-              className={`text-[#4c5a67] w-4 h-4 sm:w-5 sm:h-5 ${
+              className={`text-[#4c5a67] w-4 h-4 ${
                 activeGenres.some((activeGenre) => activeGenre === genre.id) &&
                 "text-[#fff]"
               }`}

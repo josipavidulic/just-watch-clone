@@ -2,7 +2,6 @@
 
 import React from "react";
 
-import { ResponseData } from "@/types/types";
 import { useFavorites } from "@/context/FavoriteContext";
 import Card from "@/app/(components)/Card";
 

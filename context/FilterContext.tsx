@@ -1,5 +1,4 @@
 "use client";
-import { movieGenres } from "@/lib/responses";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   Dispatch,
@@ -23,7 +22,7 @@ interface FilterContextProps {
   setFilters: Dispatch<SetStateAction<FilterState>>;
 }
 
-const initialFilters: FilterState = {
+export const initialFilters: FilterState = {
   releaseYearFrom: 1900,
   releaseYearUntil: new Date().getFullYear(),
   genres: [],
@@ -60,11 +59,10 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
       genres: genres ? genres.split(",").map(Number) : [],
       rating: rating ? parseFloat(rating) : 0,
     });
-  }, [searchParams]);
+  }, []);
 
   useEffect(() => {
     const query = new URLSearchParams();
-
     if (filters.releaseYearFrom !== 1900)
       query.set("releaseYearFrom", filters.releaseYearFrom.toString());
     if (filters.releaseYearUntil !== new Date().getFullYear())

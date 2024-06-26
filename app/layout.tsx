@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
 import { FavoritesProvider } from "@/context/FavoriteContext";
 import NavigationBar from "./(components)/NavigationBar";
 import { Suspense } from "react";
 import { ExpandedStateProvider } from "@/context/ExpandendStateContext";
 import { FilterProvider } from "@/context/FilterContext";
-
-const inter = Inter({ subsets: ["latin"] });
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "JustWatch - The Streaming Guide",
@@ -24,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <Suspense>
           <FavoritesProvider>
             <FilterProvider>

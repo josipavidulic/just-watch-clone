@@ -4,6 +4,7 @@ import React from "react";
 import uuid from "react-uuid";
 import { TMDbResponse } from "@/types/types";
 import Row from "../(components)/Row";
+import Link from "next/link";
 
 interface HomePageListContainerProps {
   title?: string;
@@ -42,9 +43,12 @@ const HomePageListContainer = async ({
             </p>
           </div>
           {seeMoreDescriptionButton && seeMoreDescriptionButton.length > 0 && (
-            <button className="outline-none font-normal text-base text-start text-[#78a6b8]">
+            <Link
+              href="/discover"
+              className="outline-none font-normal text-base text-start text-[#78a6b8]"
+            >
               {seeMoreDescriptionButton}
-            </button>
+            </Link>
           )}
         </div>
       )}

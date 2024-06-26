@@ -2,7 +2,6 @@ import { cn } from "@/lib/utils";
 import { ResponseData } from "@/types/types";
 import Image from "next/image";
 import React from "react";
-import Card from "./Card";
 import { handleDetailsPage } from "@/lib/handleDetailsPage";
 import { useRouter } from "next/navigation";
 import { handleSearchedItems } from "@/lib/handleSearcheditems";

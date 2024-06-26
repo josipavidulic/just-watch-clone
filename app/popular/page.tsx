@@ -1,9 +1,15 @@
-import { FilterProvider } from "@/context/FilterContext";
-import React, { Suspense } from "react";
+import React from "react";
 import Filter from "./_components/Filter";
 import MovieList from "./_components/MovieList";
 
-const page = () => {
+export interface FilterState {
+  releaseYearFrom: number;
+  releaseYearUntil: number;
+  genres: number[];
+  rating: number;
+}
+
+const Page = () => {
   return (
     <main className="w-full max-w-[1752px] mx-auto min-h-screen h-full bg-[#060d17] flex flex-col px-4 lg:px-16 py-2 pb-18 font-lato">
       <div className="w-full flex flex-col gap-5 items-start">
@@ -15,4 +21,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
