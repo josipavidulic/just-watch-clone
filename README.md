@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Just Watch Clone - README
 
-## Getting Started
+## Introduction
 
-First, run the development server:
+This is a guide to help you run the Just Watch Clone application locally on your machine. You can either run it directly on your local environment or use Docker for containerized deployment.
+
+## Prerequisites
+
+Ensure you have the following installed on your machine:
+
+- Git
+- Node.js and npm (for local setup)
+- Docker and Docker Compose (for Docker setup)
+
+## Running the Application Locally
+
+### Step 1: Clone the Repository
+
+Open your terminal and run the following command to clone the repository:
+
+```bash
+git clone git@github.com:josipavidulic/just-watch-clone.git
+```
+
+### Step 2: Navigate to the Prject Directory
+
+Change to the cloned respository directory:
+
+```bash
+cd just-watch-clone
+```
+
+### Step 3: Install Dependencies
+
+Install the necessary dependencies:
+
+```bash
+npm install
+```
+
+### Step 4: Run the Application in Development
+
+Run the application by running:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Step 5: Access the Application
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open your web browser and go to:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+http://localhost:3000/
 
-## Learn More
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Step 6: Stop the Application
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To stop the application, you can simply press Ctrl + C in the terminal where the application is running.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Running the Application with Docker
 
-## Deploy on Vercel
+### Step 1: Clone the Repository
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Open your terminal and run the following command to clone the repository:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+git clone git@github.com:josipavidulic/just-watch-clone.git
+```
+
+### Step 2: Navigate to the Prject Directory
+
+Change to the cloned respository directory:
+
+```bash
+cd just-watch-clone
+```
+
+### Step 3: Build the Docker Image
+
+Build the Docker image by running:
+
+```bash
+docker build -t just-watch-clone .
+```
+
+### Step 4: Deploy the Application
+
+Deploy the application using Docker Compose:
+
+```bash
+docker compose up -d
+```
+
+### Step 5: Access the Application
+
+Open your web browser and go to:
+
+```bash
+http://localhost:3000/
+```
+
+### Step 6: Stop the Container
+
+To stop the Docker container, run:
+
+```bash
+docker compose stop
+```
