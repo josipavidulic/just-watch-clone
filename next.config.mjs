@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
+
+const isDocker = process.env.IS_DOCKER === "true";
 const nextConfig = {
-  output: "standalone",
+  output: isDocker ? "standalone" : undefined,
   images: {
     remotePatterns: [
       {
