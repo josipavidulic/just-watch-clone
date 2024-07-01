@@ -4,6 +4,10 @@
 
 This is a guide to help you run the Just Watch Clone application locally on your machine. You can either run it directly on your local environment or use Docker for containerized deployment.
 
+## Project Context
+
+This project was an assignment for an elimination round from [Company Name]. Please note that some elements within the application are dummy placeholders and were not the primary focus of this assignment.
+
 ## Prerequisites
 
 Ensure you have the following installed on your machine:
