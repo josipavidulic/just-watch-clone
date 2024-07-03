@@ -113,7 +113,7 @@ const SearchInput = () => {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onFocus={() => setIsExpanded(true)}
-          onKeyPress={handleEnter}
+          onKeyDown={handleEnter}
           type="text"
           placeholder="Pretražite filmove i serije"
           className="border-none bg-transparent m-0 outline-none w-full placeholder:text-[#8c8c8c] text-[#ffff]"

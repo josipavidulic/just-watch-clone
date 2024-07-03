@@ -8,7 +8,6 @@ import Card from "./Card";
 interface RowProps {
   showRankingNumber?: boolean;
   results: ResponseData[];
-  rowId: string;
   hasFavoriteIcon?: boolean;
   className?: string;
 }
@@ -16,7 +15,6 @@ interface RowProps {
 const Row = ({
   showRankingNumber,
   results,
-  rowId,
   hasFavoriteIcon,
   className,
 }: RowProps) => {
@@ -71,7 +69,6 @@ const Row = ({
       )}
 
       <div
-        id={"slider" + rowId}
         ref={sliderRef}
         className={cn(
           "overflow-x-scroll scrollbar-hide flex items-center flex-nowrap gap-6 mr-4",

@@ -37,7 +37,7 @@ const ExpandedInputContent = ({
     >
       <div className="flex items-center justify-between mb-8">
         <h5>
-          {storedItems !== null
+          {storedItems && storedItems?.length > 0
             ? "Nedavna pretraživanja"
             : "Nema posljednjih istraživanja"}
         </h5>

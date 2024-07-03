@@ -2,8 +2,7 @@
 
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import Card from "@/app/(components)/Card";
-import { ResponseData, TMDbResponse } from "@/types/types";
-import { getData } from "@/app/actions";
+import { ResponseData } from "@/types/types";
 import { useFilter } from "@/context/FilterContext";
 import { buildUrl } from "@/lib/buildFilterUrl";
 import Image from "next/image";

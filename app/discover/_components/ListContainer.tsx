@@ -1,7 +1,5 @@
 import React from "react";
-
 import { getData } from "@/app/actions";
-import uuid from "react-uuid";
 import { TMDbResponse } from "@/types/types";
 import Row from "@/app/(components)/Row";
 
@@ -25,7 +23,6 @@ const ListContainer = async ({
       <Row
         results={data.results.slice(0, lastElement)}
         showRankingNumber={showRankingNumber}
-        rowId={uuid()}
         hasFavoriteIcon={true}
         className="w-[190px]"
       />

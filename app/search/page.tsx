@@ -9,9 +9,10 @@ import Card from "../(components)/Card";
 const Page = () => {
   const [page, setPage] = useState(1);
   const searchParams = useSearchParams();
-  const query = searchParams.get("q");
   const [data, setData] = useState<ResponseData[]>([]);
   const observer = useRef<IntersectionObserver | null>(null);
+
+  const query = searchParams.get("q");
 
   const fetchSearchData = useCallback(
     async (newPage: number) => {

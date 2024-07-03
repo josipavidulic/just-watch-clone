@@ -3,7 +3,6 @@ import { FavoritesProvider } from "@/context/FavoriteContext";
 import NavigationBar from "./(components)/NavigationBar";
 import { Suspense } from "react";
 import { ExpandedStateProvider } from "@/context/ExpandendStateContext";
-import { FilterProvider } from "@/context/FilterContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -24,12 +23,10 @@ export default function RootLayout({
       <body>
         <Suspense>
           <FavoritesProvider>
-            <FilterProvider>
-              <ExpandedStateProvider>
-                <NavigationBar />
-                {children}
-              </ExpandedStateProvider>
-            </FilterProvider>
+            <ExpandedStateProvider>
+              <NavigationBar />
+              {children}
+            </ExpandedStateProvider>
           </FavoritesProvider>
         </Suspense>
       </body>

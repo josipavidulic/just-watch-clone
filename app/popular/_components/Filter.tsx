@@ -15,7 +15,7 @@ import { useFilter } from "@/context/FilterContext";
 import { cn } from "@/lib/utils";
 
 const Filter = () => {
-  const [activeFilterId, setActiveFilterId] = useState<number | null>(null);
+  const [openedFilterId, setOpenedFilterId] = useState<number | null>(null);
   const ref = useRef<HTMLDivElement>(null);
   const { filters, setFilters } = useFilter();
 
@@ -27,6 +27,10 @@ const Filter = () => {
       rating: 0,
     });
   };
+
+  const toggleFilter = useCallback((id: number) => {
+    setOpenedFilterId((prevId) => (prevId === id ? null : id));
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -40,17 +44,6 @@ const Filter = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
-  const toggleFilter = useCallback(
-    (id: number) => {
-      if (activeFilterId === id) {
-        setActiveFilterId(null);
-      } else {
-        setActiveFilterId(id);
-      }
-    },
-    [activeFilterId]
-  );
 
   const filterList = [
     {
@@ -98,13 +91,13 @@ const Filter = () => {
               >
                 {filter.filterName}
               </h3>
-              {activeFilterId === filter.id ? (
+              {openedFilterId === filter.id ? (
                 <ChevronUp className="max-sm:w-4 max-sm:h-4" />
               ) : (
                 <ChevronDown className="max-sm:w-4 max-sm:h-4" />
               )}
             </button>
-            {activeFilterId === filter.id && (
+            {openedFilterId === filter.id && (
               <div
                 ref={ref}
                 className="z-10 mt-2 top-full absolute flex flex-col gap-6 p-6 rounded-md min-w-[250px] max-w-[350px]  sm:w-[400px] bg-[#10161d]"

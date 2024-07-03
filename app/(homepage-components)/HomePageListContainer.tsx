@@ -55,7 +55,6 @@ const HomePageListContainer = async ({
       <Row
         results={showRankingNumber ? data.results.slice(0, 10) : data.results}
         showRankingNumber={showRankingNumber}
-        rowId={uuid()}
         className="w-[190px]"
       />
     </div>

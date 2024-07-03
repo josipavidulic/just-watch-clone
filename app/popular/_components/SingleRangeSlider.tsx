@@ -15,14 +15,9 @@ interface SingleRangeSliderProps {
   step: number;
 }
 
-const SingleRangeSlider: React.FC<SingleRangeSliderProps> = ({
-  min,
-  max,
-  step,
-}) => {
+const SingleRangeSlider = ({ min, max, step }: SingleRangeSliderProps) => {
   const { filters, setFilters } = useFilter();
   const progressRef = useRef<HTMLDivElement>(null);
-  const tooltipRef = useRef<HTMLDivElement>(null);
   const [value, setValue] = useState<number>(filters.rating);
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
 
@@ -45,16 +40,6 @@ const SingleRangeSlider: React.FC<SingleRangeSliderProps> = ({
     setFilters((prevState) => ({ ...prevState, rating: min }));
   };
 
-  const handleBarClick = (e: MouseEvent<HTMLDivElement>) => {
-    if (progressRef.current) {
-      const rect = progressRef.current.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      const clickPercent = (clickX / rect.width) * 100;
-      const newValue = min + (clickPercent / 100) * (max - min);
-      setValue(Math.round(newValue / step) * step);
-    }
-  };
-
   useEffect(() => {
     if (progressRef.current) {
       const progressBar = progressRef.current;
@@ -63,14 +48,15 @@ const SingleRangeSlider: React.FC<SingleRangeSliderProps> = ({
       progressBar.style.right = `0%`;
       progressBar.style.left = `${percent}%`;
     }
-
-    if (tooltipRef.current) {
-      const rangeInput = tooltipRef.current
-        .previousElementSibling as HTMLInputElement;
-      const offset = (rangeInput.clientWidth * (value - min)) / (max - min);
-      tooltipRef.current.style.left = `calc(${offset}px)`;
-    }
   }, [value, min, max]);
+
+  const getTooltipOffset = (value: number) => {
+    const rangeInput = document.querySelector(
+      'input[type="range"]'
+    ) as HTMLInputElement;
+    const offset = (rangeInput.clientWidth * (value - min)) / (max - min);
+    return offset;
+  };
 
   return (
     <>
@@ -94,10 +80,7 @@ const SingleRangeSlider: React.FC<SingleRangeSliderProps> = ({
         />
         <span>{min}</span>
         <div className="flex flex-col w-full">
-          <div
-            className="relative h-1 rounded-md bg-[#1e2328]"
-            onClick={handleBarClick}
-          >
+          <div className="relative h-1 rounded-md bg-[#1e2328]">
             <div
               className="absolute h-1 bg-[#4c5a67] rounded"
               ref={progressRef}
@@ -119,8 +102,8 @@ const SingleRangeSlider: React.FC<SingleRangeSliderProps> = ({
             />
             {showTooltip && (
               <div
-                ref={tooltipRef}
                 className="absolute -top-8 left-0 transform -translate-x-1/2 bg-[#4c5a67] text-white text-center rounded px-1"
+                style={{ left: `${getTooltipOffset(value)}px` }}
               >
                 {value}
               </div>

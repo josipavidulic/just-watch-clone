@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactNode, createContext, useState } from "react";
+import React, { ReactNode, createContext, useContext, useState } from "react";
 
 interface ExpandedStateContextType {
   isExpanded: boolean;
@@ -26,5 +26,5 @@ export const ExpandedStateProvider = ({
 };
 
 export const useExpandedState = () => {
-  return React.useContext(ExpandedStateContext);
+  return useContext(ExpandedStateContext);
 };

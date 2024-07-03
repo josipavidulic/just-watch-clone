@@ -1,4 +1,5 @@
 import { movieProvidersResponse } from "@/lib/responses";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -7,7 +8,7 @@ const HeroSection = () => {
   return (
     <div className="w-full flex h-[750px] flex-col items-center justify-end gap-10 text-center bg-[url(/hero-image.png)] bg-cover ">
       <div className="absolute w-full h-full bg-custom-gradient"></div>
-      <h1 className="leasing-[48px] sm:leading-[58px] lg:leading-[70px] text-4xl sm:text-5xl lg:text-6xl w-[90%] lg:w-2/3 2xl:w-1/2 font-bold lg:font-black  text-[#fff] z-10">
+      <h1 className="leasing-[48px] sm:leading-[58px] lg:leading-[70px] text-4xl sm:text-5xl lg:text-6xl w-[90%] lg:w-2/3 2xl:w-1/2 font-bold lg:font-black text-[#fff] z-10">
         Vaš vodič za streaming filmovi, TV serije i sport
       </h1>
       <p className="hidden sm:block w-[90%] sm:w-[80%] text-xl text-[#999c9f] z-10">
@@ -37,7 +38,7 @@ const HeroSection = () => {
           {movieProvidersResponse.slice(0, 12).map((provider, index) => (
             <div
               key={provider.provider_id}
-              className={`${index >= 4 && "hidden lg:block"} cursor-pointer`}
+              className={cn("cursor-pointer", index >= 4 && "hidden lg:block")}
             >
               <Image
                 src={`https://image.tmdb.org/t/p/original${provider.logo_path}`}

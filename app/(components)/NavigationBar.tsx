@@ -1,16 +1,13 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import SearchInput from "./SearchInput";
 import { LinkButton } from "@/types/types";
 import { Bookmark, Menu, UserRoundCog } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import {
-  ExpandedStateProvider,
-  useExpandedState,
-} from "@/context/ExpandendStateContext";
+import { useExpandedState } from "@/context/ExpandendStateContext";
 
 const menuOptions: LinkButton[] = [
   { id: 0, name: "Početna", href: "/discover" },
@@ -31,7 +28,7 @@ const NavigationBar = () => {
           : "bg-[#060d17] px-4 py-2 lg:px-16 lg:py-3"
       )}
     >
-      <div className="flex flex-col lg:flex-row items-center justify-between font-lato text-sm text-[#8c8c8c] ">
+      <div className="flex flex-col lg:flex-row items-center justify-between font-lato text-sm text-[#8c8c8c]">
         <div className="max-lg:w-full flex items-center justify-between lg:px-3">
           <Menu className="block lg:hidden w-5 h-5" />
           <Link

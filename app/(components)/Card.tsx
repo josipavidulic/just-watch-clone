@@ -36,6 +36,7 @@ const Card = ({
       removeFavoriteMovie(movie);
     }
   };
+
   const handleDetails = (e: React.MouseEvent) => {
     const url = handleDetailsPage(card, e);
     router.push(url);

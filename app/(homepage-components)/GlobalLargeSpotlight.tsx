@@ -43,8 +43,6 @@ const GlobalLargeSpotlight = ({ slides }: GlobalLargeSpotlightProps) => {
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
       >
         {slides.map((slide, index) => {
-          const title = (slide.original_title as string) ?? slide.original_name;
-
           return (
             <div
               key={index}
@@ -63,7 +61,7 @@ const GlobalLargeSpotlight = ({ slides }: GlobalLargeSpotlightProps) => {
                 />
 
                 <div className="flex flex-col max-sm:items-center justify-around w-[75%] gap-3 text-[#c6c8cd]">
-                  <h2 className="text-2xl font-black ">
+                  <h2 className="text-2xl font-black">
                     {(slide.title as string) ?? slide.name}
                   </h2>
                   <div className="flex items-center gap-2">
@@ -98,7 +96,7 @@ const GlobalLargeSpotlight = ({ slides }: GlobalLargeSpotlightProps) => {
           );
         })}
       </div>
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+      <div className="absolute bottom-4 left-1/2  transform -translate-x-1/2 flex gap-2">
         {slides.map((_, index) => (
           <button
             key={index}
